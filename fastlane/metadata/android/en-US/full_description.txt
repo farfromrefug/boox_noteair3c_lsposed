@@ -1,0 +1,5 @@
+Improvements for the Boox Note Air 3c
+
+**Features**
+
+* Reader mode: allow to use volume button to switch page while screen is off

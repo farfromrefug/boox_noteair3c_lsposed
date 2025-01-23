@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="xposed_desc">Module with different improvements for the Boox Note Air 3c</string>
+</resources>
