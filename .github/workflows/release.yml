@@ -92,10 +92,10 @@ jobs:
 
       - name: get current version
         run: | 
-          echo "CURRENT_VERSION=$(bundle exec fastlane run android_get_version_name | grep -oP '(?<=Result:)\s*\K(\d+\.?)+' )" > $GITHUB_ENV
+          echo "CURRENT_VERSION=$(bundle exec fastlane get_version_name | grep -oP '(?<=is:)\s*\K(\d+\.?)+' )" > $GITHUB_ENV
       - name: get current version
         run: | 
-          echo "CURRENT_VERSION_CODE=$(bundle exec fastlane run android_get_version_code | grep -oP '(?<=Result:)\s*\K(\d+\.?)+' )" > $GITHUB_ENV
+          echo "CURRENT_VERSION_CODE=$(bundle exec fastlane get_version_code | grep -oP '(?<=is:)\s*\K(\d+\.?)+' )" > $GITHUB_ENV
 
 
       - id: release_type_string
@@ -160,7 +160,7 @@ jobs:
       - name: publish github
         if: github.event.inputs.github == 'true'
         run: |
-          bundle exec fastlane android github create_tag:${{ github.event.inputs.publish }} publish:${{ github.event.inputs.publish }} github:true --verbose
+          bundle exec fastlane github create_tag:${{ github.event.inputs.publish }} publish:${{ github.event.inputs.publish }} github:true --verbose
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             

@@ -85,8 +85,8 @@ lane :build_flavor do |params|
   platform = params[:platform]
   flavor = params[:flavor]
   options = params[:options]
-  version = android_get_version_name
-  versionCode = android_get_version_code
+  version = get_version_name
+  versionCode = get_version_code
   
   # there we add the platform to the dist paramater. The idea is to have different dist for ios android
   # this is because we generate different sources for android and ios so we have different sourceMaps
@@ -229,111 +229,115 @@ lane :get_changelog  do |params|
   logs
 end
 
-platform :android do
+lane :write_changelog do |params| 
+  version = params[:version]
+  changelog = params[:changelog]
 
-  lane :write_changelog do |params| 
-    version = params[:version]
-    changelog = params[:changelog]
-
-    if (changelog && changelog.length > 500) 
-      changelog = changelog[0..499]
-    end
-
-    metadata_dir=File.join(metadata_path_realpath,"android")
-    puts "current dir: #{Dir.getwd}"
-    puts "metadata_dir: #{metadata_dir}"
-    system 'mkdir', '-p', metadata_dir
-    files = []
-    metadata_languages.each { |lang| 
-      changelogFolderPath = File.join(metadata_dir, lang, "changelogs")
-      puts "changelogFolderPath: #{changelogFolderPath}"
-      if (Dir.exist?(changelogFolderPath)) 
-        changelogFilePath = File.join(changelogFolderPath, "#{version}.txt")
-        writeFileIfNotExist(changelogFilePath, changelog)
-        files.push(changelogFilePath)
-      end
-    }
-    # Create a new branch and upload a PR for it.
-    if (files.length > 0)
-      git_add(path: files)
-      git_commit(path: files, message: "#{version} release notes", allow_nothing_to_commit: true)
-    end
-    # sh("git add #{metadata_dir}; git commit -m '#{version} release notes' --allow-empty")
+  if (changelog && changelog.length > 500) 
+    changelog = changelog[0..499]
   end
 
-  lane :get_version do
-    android_get_version_name
+  metadata_dir=File.join(metadata_path_realpath,"android")
+  puts "current dir: #{Dir.getwd}"
+  puts "metadata_dir: #{metadata_dir}"
+  system 'mkdir', '-p', metadata_dir
+  files = []
+  metadata_languages.each { |lang| 
+    changelogFolderPath = File.join(metadata_dir, lang, "changelogs")
+    puts "changelogFolderPath: #{changelogFolderPath}"
+    if (Dir.exist?(changelogFolderPath)) 
+      changelogFilePath = File.join(changelogFolderPath, "#{version}.txt")
+      writeFileIfNotExist(changelogFilePath, changelog)
+      files.push(changelogFilePath)
+    end
+  }
+  # Create a new branch and upload a PR for it.
+  if (files.length > 0)
+    git_add(path: files)
+    git_commit(path: files, message: "#{version} release notes", allow_nothing_to_commit: true)
+  end
+  # sh("git add #{metadata_dir}; git commit -m '#{version} release notes' --allow-empty")
+end
+
+lane :get_version_name do
+  android_get_version_name(
+    gradle_file: "app/build.gradle.kts" # optional
+  )
+end
+lane :get_version_code do
+  android_get_version_code(
+    gradle_file: "app/build.gradle.kts" # optional
+  )
+end
+
+lane :upload_store   do |params| 
+  options = params[:options]
+  track = params[:flavor]
+  if (track == 'beta') 
+    track = 'internal'
   end
 
-  lane :upload_store   do |params| 
-    options = params[:options]
-    track = params[:flavor]
-    if (track == 'beta') 
-      track = 'internal'
-    end
+  puts "upload_to_play_store dir: #{Dir.getwd}"
+  puts "metadata_dir: #{Pathname.new(File.join(metadata_path_realpath, "android")).realpath.to_s}"
+  upload_to_play_store(
+    track: track,
+    metadata_path:File.join(metadata_path_realpath, "android"),
+    track_promote_to: track,
+    aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+    skip_upload_screenshots: !options[:upload_screenshots],
+    skip_upload_images: !options[:upload_images],
+    skip_upload_metadata: !options[:upload_metadata]
+  )
+end
 
-    puts "upload_to_play_store dir: #{Dir.getwd}"
-    puts "metadata_dir: #{Pathname.new(File.join(metadata_path_realpath, "android")).realpath.to_s}"
-    upload_to_play_store(
-      track: track,
-      metadata_path:File.join(metadata_path_realpath, "android"),
-      track_promote_to: track,
-      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
-      skip_upload_screenshots: !options[:upload_screenshots],
-      skip_upload_images: !options[:upload_images],
-      skip_upload_metadata: !options[:upload_metadata]
+desc 'Build the Android application.'
+lane :build do |params|
+  options = params[:options]
+  puts "build flavor:"  + params[:flavor]
+  puts "build options:"  + JSON.generate(options.to_json)
+  case params[:flavor]
+  when 'fdroid','github'
+    gradle(
+      task: "assemble",
+      build_type: "Release",
+      properties: {
+        "android.injected.signing.store.file" => File.join(project_root_path, ENV["KEYSTORE_PATH"]),
+        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEYSTORE_ALIAS"],
+        "android.injected.signing.key.password" => ENV["KEYSTORE_ALIAS_PASSWORD"],
+      }
+    )
+  else
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      properties: {
+        "android.injected.signing.store.file" => ENV["KEYSTORE_PATH"],
+        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEYSTORE_ALIAS"],
+        "android.injected.signing.key.password" => ENV["KEYSTORE_ALIAS_PASSWORD"],
+      }
     )
   end
-
-  desc 'Build the Android application.'
-  lane :build do |params|
-    options = params[:options]
-    puts "build flavor:"  + params[:flavor]
-    puts "build options:"  + JSON.generate(options.to_json)
-    case params[:flavor]
-    when 'fdroid','github'
-      gradle(
-        task: "assemble",
-        build_type: "Release",
-        properties: {
-          "android.injected.signing.store.file" => File.join(project_root_path, ENV["KEYSTORE_PATH"]),
-          "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
-          "android.injected.signing.key.alias" => ENV["KEYSTORE_ALIAS"],
-          "android.injected.signing.key.password" => ENV["KEYSTORE_ALIAS_PASSWORD"],
-        }
-      )
-    else
-      gradle(
-        task: "bundle",
-        build_type: "Release",
-        properties: {
-          "android.injected.signing.store.file" => ENV["KEYSTORE_PATH"],
-          "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
-          "android.injected.signing.key.alias" => ENV["KEYSTORE_ALIAS"],
-          "android.injected.signing.key.password" => ENV["KEYSTORE_ALIAS_PASSWORD"],
-        }
-      )
-    end
-  end
+end
 
 
-  desc 'Ship to Github.'
-  lane :github do |options|
-    build_and_publish(platform:'android', flavor:'github', options: options)
-  end
+desc 'Ship to Github.'
+lane :github do |options|
+  build_and_publish(platform:'android', flavor:'github', options: options)
+end
 
-  desc 'build for fdroid.'
-  lane :fdroid do |options|
-    build_and_publish(platform:'android', flavor:'fdroid', options: options)
-  end
+desc 'build for fdroid.'
+lane :fdroid do |options|
+  build_and_publish(platform:'android', flavor:'fdroid', options: options)
+end
 
-  desc 'Ship to Android Playstore Beta.'
-  lane :beta do |options|
-    build_and_publish(platform:'android', flavor:'beta', options: options)
-  end
+desc 'Ship to Android Playstore Beta.'
+lane :beta do |options|
+  build_and_publish(platform:'android', flavor:'beta', options: options)
+end
 
-  desc 'Ship to Android Playstore Alpha.'
-  lane :alpha do |options|
-    build_and_publish(platform:'android', flavor:'alpha', options: options)
-  end
+desc 'Ship to Android Playstore Alpha.'
+lane :alpha do |options|
+  build_and_publish(platform:'android', flavor:'alpha', options: options)
 end

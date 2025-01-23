@@ -5,17 +5,77 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying fastlane version" time="0.000377543">
+      <testcase classname="fastlane.lanes" name="00: Verifying fastlane version" time="0.000391168">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: opt_out_usage" time="0.000157003">
+      <testcase classname="fastlane.lanes" name="01: opt_out_usage" time="0.000159467">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: android_get_version_name" time="0.000237549">
+      <testcase classname="fastlane.lanes" name="02: Switch to build_and_publish lane" time="0.000206713">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: Switch to setup lane" time="9.5277e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: Switch to build_flavor lane" time="8.4625e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: Switch to get_version_name lane" time="7.9954e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: android_get_version_name" time="0.000234495">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: Switch to get_version_code lane" time="8.6195e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: android_get_version_code" time="0.000191443">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: Switch to build lane" time="0.000266357">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: assembleRelease" time="49.467642729">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: push_to_git_remote" time="1.42694478">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="12: Switch to get_changelog lane" time="0.000471939">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="13: analyze_commits" time="0.03198239">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="14: conventional_changelog" time="0.005298856">
         
       </testcase>
     

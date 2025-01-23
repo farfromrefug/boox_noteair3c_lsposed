@@ -53,71 +53,74 @@ Setup
 
 
 
-----
-
-
-## Android
-
-### android write_changelog
+### write_changelog
 
 ```sh
-[bundle exec] fastlane android write_changelog
+[bundle exec] fastlane write_changelog
 ```
 
 
 
-### android get_version
+### get_version_name
 
 ```sh
-[bundle exec] fastlane android get_version
+[bundle exec] fastlane get_version_name
 ```
 
 
 
-### android upload_store
+### get_version_code
 
 ```sh
-[bundle exec] fastlane android upload_store
+[bundle exec] fastlane get_version_code
 ```
 
 
 
-### android build
+### upload_store
 
 ```sh
-[bundle exec] fastlane android build
+[bundle exec] fastlane upload_store
+```
+
+
+
+### build
+
+```sh
+[bundle exec] fastlane build
 ```
 
 Build the Android application.
 
-### android github
+### github
 
 ```sh
-[bundle exec] fastlane android github
+[bundle exec] fastlane github
 ```
 
 Ship to Github.
 
-### android fdroid
+### fdroid
 
 ```sh
-[bundle exec] fastlane android fdroid
+[bundle exec] fastlane fdroid
 ```
 
 build for fdroid.
 
-### android beta
+### beta
 
 ```sh
-[bundle exec] fastlane android beta
+[bundle exec] fastlane beta
 ```
 
 Ship to Android Playstore Beta.
 
-### android alpha
+### alpha
 
 ```sh
-[bundle exec] fastlane android alpha
+[bundle exec] fastlane alpha
 ```
 
 Ship to Android Playstore Alpha.
