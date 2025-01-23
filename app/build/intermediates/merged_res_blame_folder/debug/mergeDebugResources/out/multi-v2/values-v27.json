@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.akylas.noteair3c.lsposed.app-mergeDebugResources-39:/values-v27/values-v27.xml",
+            "map": [
+                {
+                    "source": "/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values-v27/styles.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "7",
+                        "endColumns": "12",
+                        "endOffsets": "417"
+                    }
+                }
+            ]
+        }
+    ]
+}

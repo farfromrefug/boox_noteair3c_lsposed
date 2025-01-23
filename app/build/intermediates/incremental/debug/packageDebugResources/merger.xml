@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res"><file name="activity_main" path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/layout/activity_main.xml" qualifiers="" type="layout"/><file path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values-v27/styles.xml" qualifiers="v27"><style name="AppThemeOverlay" parent="Theme.Material3.Light">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style></file><file path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values-night/styles.xml" qualifiers="night-v8"><style name="AppThemeOverlay" parent="Theme.Material3.Dark">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style></file><file path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values/strings.xml" qualifiers=""><string name="xposed_desc">Module with different improvements for the Boox Note Air 3c</string></file><file path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values/colors.xml" qualifiers=""><color name="colorPrimary">#FF4081</color><color name="colorPrimaryDark">#181C25</color><color name="colorAccent">#FF4081</color></file><file path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values/arrays.xml" qualifiers=""><string-array name="xposedscope">
+        <item>android</item>
+        <item>com.android.systemui</item>
+        <item>com.onyx</item>
+        <item>com.onyx.kreader</item>
+        <item>com.onyx.floatingbutton</item>
+    </string-array></file><file path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values/styles.xml" qualifiers=""><style name="AppThemeOverlay" parent="Theme.Material3.Light">
+    </style><style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar">
+    </style><style name="AppTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+    </style><style name="AppTheme" parent="AppThemeOverlay">
+
+
+        <item name="preferenceTheme">@style/ThemeOverlay.App.Preference</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+    </style><style name="ThemeOverlay.App.Preference" parent="PreferenceThemeOverlay">
+        <item name="switchPreferenceCompatStyle">@style/App.Preference.SwitchPreference</item>
+    </style><style name="App.Preference.SwitchPreference" parent="Preference.SwitchPreference.Material">
+        <item name="android:widgetLayout">@layout/my_material_switch_layout</item>
+    </style></file><file path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values-v23/styles.xml" qualifiers="v23"><style name="AppThemeOverlay" parent="Theme.Material3.Light">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">#99000000</item>
+    </style></file><file name="prefs" path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/xml/prefs.xml" qualifiers="" type="xml"/><file path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values-v29/styles.xml" qualifiers="v29"><style name="AppThemeOverlay" parent="Theme.Material3.Light">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style></file><file name="my_material_switch_layout" path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/layout/my_material_switch_layout.xml" qualifiers="" type="layout"/></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/mguillon/dev/android/note3c/lsposed_module/app/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/mguillon/dev/android/note3c/lsposed_module/app/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/mguillon/dev/android/note3c/lsposed_module/app/build/generated/res/resValues/debug"/></dataSet><mergedItems/></merger>

@@ -1,0 +1,21 @@
+[versions]
+agp = "8.7.2"
+api = "82"
+core-ktx = "1.15.0"
+kotlin = "1.9.0"
+material = "1.12.0"
+preference-ktx = "1.2.1"
+xposed-api = "100"
+xposed-service = "100-1.0.0"
+
+[plugins]
+agp-app = { id = "com.android.application", version.ref = "agp" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+[libraries]
+api = { module = "de.robv.android.xposed:api", version.ref = "api" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+libxposed-api = { group = "io.github.libxposed", name = "api", version.ref = "xposed-api" }
+libxposed-service = { group = "io.github.libxposed", name = "service", version.ref = "xposed-service" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preference-ktx" }

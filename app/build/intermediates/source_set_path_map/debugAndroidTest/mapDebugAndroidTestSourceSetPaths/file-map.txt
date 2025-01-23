@@ -1,0 +1,4 @@
+com.akylas.screenoffbiometrics.test.app-androidTest-0 /home/mguillon/dev/android/a3y17lte/screen_off_fingerprint/app/build/generated/res/resValues/androidTest/debug
+com.akylas.screenoffbiometrics.test.app-mergeDebugAndroidTestResources-1 /home/mguillon/dev/android/a3y17lte/screen_off_fingerprint/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.akylas.screenoffbiometrics.test.app-mergeDebugAndroidTestResources-2 /home/mguillon/dev/android/a3y17lte/screen_off_fingerprint/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.akylas.screenoffbiometrics.test.app-debugAndroidTest-3 /home/mguillon/dev/android/a3y17lte/screen_off_fingerprint/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources

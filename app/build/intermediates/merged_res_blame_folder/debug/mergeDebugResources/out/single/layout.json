@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.akylas.noteair3c.lsposed.app-mergeDebugResources-40:/layout/my_material_switch_layout.xml",
+        "source": "com.akylas.noteair3c.lsposed.app-main-43:/layout/my_material_switch_layout.xml"
+    },
+    {
+        "merged": "/home/mguillon/.gradle/daemon/8.9/com.akylas.noteair3c.lsposed.app-mergeDebugResources-40:/layout/activity_main.xml",
+        "source": "/home/mguillon/.gradle/daemon/8.9/com.akylas.noteair3c.lsposed.app-main-43:/layout/activity_main.xml"
+    }
+]

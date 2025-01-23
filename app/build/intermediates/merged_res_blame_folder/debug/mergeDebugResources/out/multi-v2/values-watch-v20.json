@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.akylas.noteair3c.lsposed.app-mergeDebugResources-39:/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "/home/mguillon/.gradle/caches/8.9/transforms/eb3b79e35fcd5be219a0d3c9029d6bb8/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

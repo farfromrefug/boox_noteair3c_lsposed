@@ -1,0 +1,43 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.github.libxposed.example"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="34" />
+9-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml
+10
+11    <application
+11-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:5:5-18:19
+12        android:debuggable="true"
+13        android:description="@android:string/unknownName"
+13-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:6:9-58
+14        android:extractNativeLibs="false"
+15        android:label="Xposed Example"
+15-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:7:9-39
+16        android:testOnly="true"
+17        android:theme="@android:style/Theme.DeviceDefault" >
+17-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:8:9-59
+18        <activity
+18-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:10:9-17:20
+19            android:name="io.github.libxposed.example.MainActivity"
+19-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:11:13-41
+20            android:exported="true" >
+20-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:12:13-36
+21            <intent-filter>
+21-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:13:13-16:29
+22                <action android:name="android.intent.action.MAIN" />
+22-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:14:17-69
+22-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:14:25-66
+23
+24                <category android:name="android.intent.category.LAUNCHER" />
+24-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:15:17-77
+24-->/home/mguillon/dev/android/example-master/app/src/main/AndroidManifest.xml:15:27-74
+25            </intent-filter>
+26        </activity>
+27    </application>
+28
+29</manifest>

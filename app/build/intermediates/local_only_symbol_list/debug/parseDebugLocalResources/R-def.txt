@@ -1,0 +1,26 @@
+R_DEF: Internal format may change without notice
+local
+array xposedscope
+color colorAccent
+color colorPrimary
+color colorPrimaryDark
+id api
+id binder
+id framework
+id framework_version
+id framework_version_code
+id random_prefs
+id remote_file
+id request_scope
+id scope
+id switchWidget
+layout activity_main
+layout my_material_switch_layout
+string xposed_desc
+style AppTheme
+style AppThemeOverlay
+style AppTheme.AppBarOverlay
+style AppTheme.Toolbar
+style App.Preference.SwitchPreference
+style ThemeOverlay.App.Preference
+xml prefs

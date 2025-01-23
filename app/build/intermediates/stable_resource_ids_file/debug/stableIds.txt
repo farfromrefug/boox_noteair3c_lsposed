@@ -1,0 +1,10 @@
+io.github.libxposed.example:layout/activity_main = 0x7f020000
+io.github.libxposed.example:id/remote_file = 0x7f010006
+io.github.libxposed.example:id/random_prefs = 0x7f010005
+io.github.libxposed.example:id/framework_version_code = 0x7f010004
+io.github.libxposed.example:id/request_scope = 0x7f010007
+io.github.libxposed.example:id/framework = 0x7f010002
+io.github.libxposed.example:id/scope = 0x7f010008
+io.github.libxposed.example:id/binder = 0x7f010001
+io.github.libxposed.example:id/framework_version = 0x7f010003
+io.github.libxposed.example:id/api = 0x7f010000

@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditTextPreference
+        android:defaultValue="1000"
+        android:key="kreader_volume_key_delay"
+        app:useSimpleSummaryProvider="true"
+        android:dialogMessage="delay between volume key down and volume key up while using Kreader"
+        android:title="Kreader key up delay" />
+    <EditTextPreference
+        android:defaultValue="450"
+        app:useSimpleSummaryProvider="true"
+
+        android:key="volume_key_delay"
+        android:dialogMessage="delay between volume key down and volume key up "
+        android:title="key up delay" />
+</PreferenceScreen>

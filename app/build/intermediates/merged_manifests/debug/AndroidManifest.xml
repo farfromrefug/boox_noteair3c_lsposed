@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.libxposed.example"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="24"
+        android:targetSdkVersion="34" />
+
+    <application
+        android:debuggable="true"
+        android:description="@android:string/unknownName"
+        android:extractNativeLibs="false"
+        android:label="Xposed Example"
+        android:testOnly="true"
+        android:theme="@android:style/Theme.DeviceDefault" >
+        <activity
+            android:name="io.github.libxposed.example.MainActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

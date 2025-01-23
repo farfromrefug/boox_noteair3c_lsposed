@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.akylas.noteair3c.lsposed.app-debug-41:/xml_prefs.xml.flat",
+        "source": "com.akylas.noteair3c.lsposed.app-main-43:/xml/prefs.xml"
+    },
+    {
+        "merged": "/home/mguillon/.gradle/daemon/8.9/com.akylas.noteair3c.lsposed.app-debug-41:/xml_prefs.xml.flat",
+        "source": "/home/mguillon/.gradle/daemon/8.9/com.akylas.noteair3c.lsposed.app-main-43:/xml/prefs.xml"
+    },
+    {
+        "merged": "/home/mguillon/.gradle/daemon/8.9/com.akylas.noteair3c.lsposed.app-debug-41:/layout_my_material_switch_layout.xml.flat",
+        "source": "/home/mguillon/.gradle/daemon/8.9/com.akylas.noteair3c.lsposed.app-main-43:/layout/my_material_switch_layout.xml"
+    },
+    {
+        "merged": "/home/mguillon/.gradle/daemon/8.9/com.akylas.noteair3c.lsposed.app-debug-41:/layout_activity_main.xml.flat",
+        "source": "/home/mguillon/.gradle/daemon/8.9/com.akylas.noteair3c.lsposed.app-main-43:/layout/activity_main.xml"
+    }
+]

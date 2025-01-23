@@ -1,0 +1,161 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.akylas.noteair3c.lsposed"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="35" />
+10
+11    <permission
+11-->[androidx.core:core:1.15.0] /home/mguillon/.gradle/caches/8.9/transforms/043e8006a356885ca41a291f40ec38de/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
+12        android:name="com.akylas.noteair3c.lsposed.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+12-->[androidx.core:core:1.15.0] /home/mguillon/.gradle/caches/8.9/transforms/043e8006a356885ca41a291f40ec38de/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
+13        android:protectionLevel="signature" />
+13-->[androidx.core:core:1.15.0] /home/mguillon/.gradle/caches/8.9/transforms/043e8006a356885ca41a291f40ec38de/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
+14
+15    <uses-permission android:name="com.akylas.noteair3c.lsposed.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+15-->[androidx.core:core:1.15.0] /home/mguillon/.gradle/caches/8.9/transforms/043e8006a356885ca41a291f40ec38de/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.15.0] /home/mguillon/.gradle/caches/8.9/transforms/043e8006a356885ca41a291f40ec38de/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+16
+17    <application
+17-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:5:5-30:19
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.15.0] /home/mguillon/.gradle/caches/8.9/transforms/043e8006a356885ca41a291f40ec38de/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
+19        android:debuggable="true"
+20        android:extractNativeLibs="false"
+21        android:label="NoteAir3cLSPosed"
+21-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:6:9-41
+22        android:testOnly="true"
+23        android:theme="@style/AppTheme" >
+23-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:8:9-40
+24        <meta-data
+24-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:9:9-11:36
+25            android:name="xposedmodule"
+25-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:10:13-40
+26            android:value="true" />
+26-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:11:13-33
+27        <meta-data
+27-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:12:9-14:51
+28            android:name="xposeddescription"
+28-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:13:13-45
+29            android:value="@string/xposed_desc" />
+29-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:14:13-48
+30        <meta-data
+30-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:15:9-17:34
+31            android:name="xposedminversion"
+31-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:16:13-44
+32            android:value="54" />
+32-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:17:13-31
+33        <meta-data
+33-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:18:9-20:53
+34            android:name="xposedscope"
+34-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:19:13-39
+35            android:resource="@array/xposedscope" />
+35-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:20:13-50
+36
+37        <activity
+37-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:21:9-29:20
+38            android:name="com.akylas.noteair3c.SettingsActivity"
+38-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:22:13-65
+39            android:exported="true"
+39-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:23:53-76
+40            android:label="Note3c Lsposed Settings" >
+40-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:23:13-52
+41            <intent-filter>
+41-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:24:13-28:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:25:17-69
+42-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:25:25-66
+43
+44                <category android:name="android.intent.category.DEFAULT" />
+44-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:26:17-76
+44-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:26:27-73
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:27:17-77
+45-->/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/AndroidManifest.xml:27:27-74
+46            </intent-filter>
+47        </activity>
+48
+49        <provider
+49-->[androidx.emoji2:emoji2:1.2.0] /home/mguillon/.gradle/caches/8.9/transforms/f0121a4a1a60322bf47dcfd139d26399/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+50            android:name="androidx.startup.InitializationProvider"
+50-->[androidx.emoji2:emoji2:1.2.0] /home/mguillon/.gradle/caches/8.9/transforms/f0121a4a1a60322bf47dcfd139d26399/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+51            android:authorities="com.akylas.noteair3c.lsposed.androidx-startup"
+51-->[androidx.emoji2:emoji2:1.2.0] /home/mguillon/.gradle/caches/8.9/transforms/f0121a4a1a60322bf47dcfd139d26399/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+52            android:exported="false" >
+52-->[androidx.emoji2:emoji2:1.2.0] /home/mguillon/.gradle/caches/8.9/transforms/f0121a4a1a60322bf47dcfd139d26399/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+53            <meta-data
+53-->[androidx.emoji2:emoji2:1.2.0] /home/mguillon/.gradle/caches/8.9/transforms/f0121a4a1a60322bf47dcfd139d26399/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+54                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+54-->[androidx.emoji2:emoji2:1.2.0] /home/mguillon/.gradle/caches/8.9/transforms/f0121a4a1a60322bf47dcfd139d26399/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+55                android:value="androidx.startup" />
+55-->[androidx.emoji2:emoji2:1.2.0] /home/mguillon/.gradle/caches/8.9/transforms/f0121a4a1a60322bf47dcfd139d26399/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+56            <meta-data
+56-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/mguillon/.gradle/caches/8.9/transforms/44047fb562fab48e3dc790afe47f4a01/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+57                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+57-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/mguillon/.gradle/caches/8.9/transforms/44047fb562fab48e3dc790afe47f4a01/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+58                android:value="androidx.startup" />
+58-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/mguillon/.gradle/caches/8.9/transforms/44047fb562fab48e3dc790afe47f4a01/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+59            <meta-data
+59-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+60                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+60-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+61                android:value="androidx.startup" />
+61-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+62        </provider>
+63
+64        <uses-library
+64-->[androidx.window:window:1.0.0] /home/mguillon/.gradle/caches/8.9/transforms/b737e9a647d5f246184471b9fac9a7d1/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+65            android:name="androidx.window.extensions"
+65-->[androidx.window:window:1.0.0] /home/mguillon/.gradle/caches/8.9/transforms/b737e9a647d5f246184471b9fac9a7d1/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+66            android:required="false" />
+66-->[androidx.window:window:1.0.0] /home/mguillon/.gradle/caches/8.9/transforms/b737e9a647d5f246184471b9fac9a7d1/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+67        <uses-library
+67-->[androidx.window:window:1.0.0] /home/mguillon/.gradle/caches/8.9/transforms/b737e9a647d5f246184471b9fac9a7d1/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+68            android:name="androidx.window.sidecar"
+68-->[androidx.window:window:1.0.0] /home/mguillon/.gradle/caches/8.9/transforms/b737e9a647d5f246184471b9fac9a7d1/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+69            android:required="false" />
+69-->[androidx.window:window:1.0.0] /home/mguillon/.gradle/caches/8.9/transforms/b737e9a647d5f246184471b9fac9a7d1/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+70
+71        <receiver
+71-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+72            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+72-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+73            android:directBootAware="false"
+73-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+74            android:enabled="true"
+74-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+75            android:exported="true"
+75-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+76            android:permission="android.permission.DUMP" >
+76-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+77            <intent-filter>
+77-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+78                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+78-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+78-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+79            </intent-filter>
+80            <intent-filter>
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+81                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+82            </intent-filter>
+83            <intent-filter>
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+84                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+85            </intent-filter>
+86            <intent-filter>
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+87                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/mguillon/.gradle/caches/8.9/transforms/b8a629aa5422c62502a21e66a575404b/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+88            </intent-filter>
+89        </receiver>
+90    </application>
+91
+92</manifest>

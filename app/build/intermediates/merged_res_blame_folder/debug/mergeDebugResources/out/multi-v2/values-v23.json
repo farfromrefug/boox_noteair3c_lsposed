@@ -1,0 +1,77 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.akylas.noteair3c.lsposed.app-mergeDebugResources-39:/values-v23/values-v23.xml",
+            "map": [
+                {
+                    "source": "/home/mguillon/.gradle/caches/8.9/transforms/e469f7cb779ce3e81aff3ae1f2572e30/transformed/material-1.12.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2,5,9,13,16,19,22,25,28,32",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,271,413,574,784,991,1198,1401,1603,1868",
+                        "endLines": "4,8,12,15,18,21,24,27,31,35",
+                        "endColumns": "10,10,10,10,10,10,10,10,10,10",
+                        "endOffsets": "266,408,569,779,986,1193,1396,1598,1863,2136"
+                    },
+                    "to": {
+                        "startLines": "58,61,65,69,72,75,78,81,84,88",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3666,3882,4024,4185,4395,4602,4809,5012,5214,5479",
+                        "endLines": "60,64,68,71,74,77,80,83,87,91",
+                        "endColumns": "10,10,10,10,10,10,10,10,10,10",
+                        "endOffsets": "3877,4019,4180,4390,4597,4804,5007,5209,5474,5747"
+                    }
+                },
+                {
+                    "source": "/home/mguillon/.gradle/caches/8.9/transforms/4d6742ff770b6b85d82321f08e5d51c8/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "55",
+                        "startColumns": "4",
+                        "startOffsets": "3516",
+                        "endLines": "57",
+                        "endColumns": "12",
+                        "endOffsets": "3661"
+                    }
+                },
+                {
+                    "source": "/home/mguillon/dev/android/note3c/lsposed_module/app/src/main/res/values-v23/styles.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "334"
+                    }
+                },
+                {
+                    "source": "/home/mguillon/.gradle/caches/8.9/transforms/eb3b79e35fcd5be219a0d3c9029d6bb8/transformed/appcompat-1.6.1/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,487,1225,1975,2094,2221,2443,2667,2782,2889,3002",
+                        "endLines": "2,3,4,5,19,33,34,35,38,42,43,44,45,49",
+                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
+                        "endOffsets": "185,320,395,482,1220,1970,2089,2216,2438,2662,2777,2884,2997,3227"
+                    },
+                    "to": {
+                        "startLines": "7,8,9,10,11,25,39,40,41,44,48,49,50,51",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "339,474,609,684,771,1509,2259,2378,2505,2727,2951,3066,3173,3286",
+                        "endLines": "7,8,9,10,24,38,39,40,43,47,48,49,50,54",
+                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
+                        "endOffsets": "469,604,679,766,1504,2254,2373,2500,2722,2946,3061,3168,3281,3511"
+                    }
+                }
+            ]
+        }
+    ]
+}
