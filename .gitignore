@@ -5,7 +5,7 @@
 /.idea/libraries
 .idea
 .DS_Store
-/build
+build
 /captures
 *.keystore
 *.jks
@@ -13,3 +13,4 @@ app/release
 /.env
 /vendor
 /certs
+/dist
