@@ -168,6 +168,6 @@ jobs:
         with:
           name:  ${{ env.APP_ID }}.${{ env.VERSION_STR }}
           path: |
-            dist/app-release.apk
+            dist/*.apk
           retention-days: 7
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
