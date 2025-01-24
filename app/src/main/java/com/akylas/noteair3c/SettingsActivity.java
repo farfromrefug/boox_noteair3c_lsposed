@@ -22,7 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, new SettingsFragment())
+                .replace(R.id.container, new SettingsFragment()).commit();
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {

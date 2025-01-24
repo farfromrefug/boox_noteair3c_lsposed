@@ -1,19 +1,23 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="UnusedAttribute" >
     <PreferenceCategory
         android:title="Kreader">
         <SeekBarPreference
             app:showSeekBarValue="true"
             app:min="0"
             app:adjustable="true"
+            app:iconSpaceReserved="false"
             android:max="2000"
             android:defaultValue="200"
             android:key="kreader_volume_key_down_delay"
             android:summary="delay before sending keydown event after waking up when using Kreader"
-            android:title="Kreader key down delay" />
+            android:title="Kreader key down delay"/>
         <SeekBarPreference
             app:showSeekBarValue="true"
             app:min="0"
             app:adjustable="true"
+            app:iconSpaceReserved="false"
             android:max="2000"
             android:defaultValue="300"
             android:key="kreader_volume_key_up_delay"
@@ -23,6 +27,7 @@
             app:showSeekBarValue="true"
             android:defaultValue="1200"
             app:adjustable="true"
+            app:iconSpaceReserved="false"
             app:min="200"
             android:max="3000"
             android:key="kreader_sleep_delay"
@@ -35,6 +40,7 @@
         <SeekBarPreference
             app:showSeekBarValue="true"
             app:min="0"
+            app:iconSpaceReserved="false"
             app:adjustable="true"
             android:max="2000"
             android:defaultValue="200"
@@ -43,6 +49,7 @@
             android:title="key down delay" />
         <SeekBarPreference
             app:showSeekBarValue="true"
+            app:iconSpaceReserved="false"
             app:min="0"
             app:adjustable="true"
             android:max="2000"
@@ -56,6 +63,7 @@
             android:max="3000"
             android:defaultValue="600"
             app:adjustable="true"
+            app:iconSpaceReserved="false"
             android:key="sleep_delay"
             android:summary="delay between volume key down and screen sleep"
             android:title="screen sleep delay" />
@@ -63,6 +71,7 @@
             app:showSeekBarValue="true"
             app:min="200"
             app:adjustable="true"
+            app:iconSpaceReserved="false"
             android:max="3000"
             android:defaultValue="1000"
             android:key="volume_key_cleanup_delay"
