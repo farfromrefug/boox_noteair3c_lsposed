@@ -1,5 +1,7 @@
 package com.akylas.noteair3c;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,9 +39,12 @@ public class SettingsActivity extends AppCompatActivity {
 //    }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
+        @SuppressLint("WorldReadableFiles")
         @Override
         public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+            getPreferenceManager().setSharedPreferencesMode(Context.MODE_WORLD_READABLE);
             addPreferencesFromResource(R.xml.prefs);
+
         }
 
     }

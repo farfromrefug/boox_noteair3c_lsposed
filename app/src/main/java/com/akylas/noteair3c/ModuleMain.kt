@@ -16,6 +16,7 @@ import android.os.SystemClock
 import android.view.KeyEvent
 import androidx.core.content.IntentCompat
 import com.akylas.noteair3c.lsposed.BuildConfig
+import com.akylas.noteair3c.utils.Preferences
 import com.akylas.noteair3c.utils.registerReceiver
 
 import de.robv.android.xposed.IXposedHookLoadPackage
@@ -40,12 +41,6 @@ val supportedPackages =
 
 class ModuleMain : IXposedHookLoadPackage {
 
-    /**
-     * To read preference of user.
-     */
-    private val pref by lazy {
-        XSharedPreferences(BuildConfig.APPLICATION_ID, "prefs")
-    }
 
     var _appContext: Context? = null
     val appContext: Context
@@ -190,12 +185,15 @@ class ModuleMain : IXposedHookLoadPackage {
                 mVolumeWakeLock?.release()
             }
 
-            val delay = if (usingKreader) pref.getLong("kreader_volume_key_delay", 999L) else pref.getLong("volume_key_delay", 449L)
-            Log.i("delay "  + usingKreader + " " + delay)
+            val prefs = Preferences()
+            val delay = if (usingKreader) prefs.getInt("kreader_sleep_delay", 1299) else prefs.getInt("sleep_delay", 649)
+            val cleanup_delay = prefs.getInt("volume_key_cleanup_delay", 1000)
+            val key_up_delay = prefs.getInt(if (usingKreader) "kreader_volume_key_up_delay" else "volume_key_up_delay", 300)
+            Log.i("delay $usingKreader delay:$delay cleanup_delay:$cleanup_delay key_up_delay:$key_up_delay")
             mPagesTurned += 1
-            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(595, delay);
-            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(596, delay + 1000L);
-            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(601, 200L);
+            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(595, delay.toLong());
+            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(596, (delay + cleanup_delay).toLong());
+            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(601, key_up_delay.toLong());
         }
     }
 
@@ -220,6 +218,7 @@ class ModuleMain : IXposedHookLoadPackage {
                 mPhoneWindowManagerHandler?.removeMessages(596);
                 disableWakeUpFrontLightEnabled = true
                 forceHideKeyguard()
+//                disableKeyguard()
                 callMethod(
                     mPhoneWindowManager,
                     "wakeUpFromPowerKey",
@@ -325,14 +324,14 @@ class ModuleMain : IXposedHookLoadPackage {
 //        }
 //    }
 
-
+    var prefs: Preferences? = null
     @SuppressLint("NewApi")
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
 
+        prefs = Preferences()
 
 
-
-        Log.i("handleLoadPackage " + lpparam.packageName + " " + AndroidAppHelper.currentApplication() )
+        Log.i("handleLoadPackage " + lpparam.packageName + " " + AndroidAppHelper.currentApplication() + " " + prefs?.getInt("sleep_delay", 1000) )
         ViewUpdateHelper = findClass(
             "android.onyx.ViewUpdateHelper",
             lpparam.classLoader
@@ -606,55 +605,7 @@ class ModuleMain : IXposedHookLoadPackage {
                     val currentActivity = it.thisObject as Activity
                     appContext.sendBroadcast(Intent("KREADER_STOP"))
                     Log.i("onStop " + currentActivity + SystemClock.uptimeMillis() + " ")
-//                    mUnregisterRunnable = object : Runnable {
-//                        override fun run() {
-////                            Log.i("mUnregisterRunnable " + SystemClock.uptimeMillis() + " ")
-//                            mUnregisterRunnable = null
-////                            unregisterReaderVolumeReceivers(currentActivity)
-//                        }
-//                    }
-
-                    // we need quite a long delay. Must be because there is a refresh between onStop and screenoff
-//                    mHandler?.postDelayed(mUnregisterRunnable!!, 2000L)
-//                    if (currentActivity == mCurrentReaderActivity) {
-//                        mCurrentReaderActivity = null
-//                    }
                 }
-//        } else if (lpparam.packageName == "com.onyx.floatingbutton") {
-//
-//            val RefreshModeSwitchAction = findClass(
-//                "com.onyx.floatingbutton.action.RefreshModeSwitchAction",
-//                lpparam.classLoader
-//            )
-//            for (method in RefreshModeSwitchAction.declaredMethods) {
-//                method.isAccessible =true
-//                method.hookBefore() {
-//                    Log.i("RefreshModeSwitchAction." + method.name)
-//
-//                }
-//            }
-//            val FloatButtonFunctionHandler = findClass(
-//                "com.onyx.floatingbutton.service.FloatButtonFunctionHandler",
-//                lpparam.classLoader
-//            )
-//            for (method in FloatButtonFunctionHandler.declaredMethods) {
-//                method.isAccessible =true
-//                method.hookBefore() {
-//                    Log.i("FloatButtonFunctionHandler." + method.name)
-//
-//                }
-//            }
-//            val SDMDevice = findClass(
-//                "com.onyx.android.sdk.device.SDMDevice",
-//                lpparam.classLoader
-//            )
-//            for (method in SDMDevice.declaredMethods) {
-//                method.isAccessible =true
-//                method.hookBefore() {
-//                    Log.i("SDMDevice." + method.name)
-//                }
-//            }
-
         } else if (lpparam.packageName == "android") {
             val CTMController = findClass(
                 "android.onyx.brightness.CTMController",
@@ -665,14 +616,10 @@ class ModuleMain : IXposedHookLoadPackage {
                 lpparam.classLoader
             )
 
-            findMethod(OnyxPowerManager) { name == "fillWhiteOnWakeup" }
-                .hookBefore {
-                    Log.i("OnyxPowerManager.fillWhiteOnWakeup " + it.args[0] + it.args[1] + " " + disableWakeUpFrontLightEnabled)
-//                    if (disableWakeUpFrontLightEnabled) {
-//                        Log.i("ignoring setLightValue")
-//                        it.result = 0
-//                    }
-                }
+//            findMethod(OnyxPowerManager) { name == "fillWhiteOnWakeup" }
+//                .hookBefore {
+//                    Log.i("OnyxPowerManager.fillWhiteOnWakeup " + it.args[0] + it.args[1] + " " + disableWakeUpFrontLightEnabled)
+//                }
 
 //            findMethod(CTMController) { name == "init" }
 //                .hookBefore {
@@ -719,31 +666,6 @@ class ModuleMain : IXposedHookLoadPackage {
                         it.result = 0
                     }
                 }
-//            findMethod(LightEntry) { name == "setLightValueImpl" }
-//                .hookBefore {
-//                    Log.i("setLightValueImpl " + it.args[0]   + " " + disableWakeUpFrontLightEnabled)
-////                    if (disableWakeUpFrontLightEnabled && it.args[0] != 0) {
-////                        Log.i("setLightValueImpl enforcing 0 ")
-////                        it.args[0] = 0
-////                    }
-////                    if (disableWakeUpFrontLightEnabled) {
-////                        Log.i("ignoring setLightValue")
-////                        it.result = 0
-////                    }
-//                }
-//            findMethod(LightEntry) { name == "turnOnLight" }
-//                .hookBefore {
-//                    Log.i("turnOnLight " + it.args[0]   + " " + disableWakeUpFrontLightEnabled)
-////                    if (disableWakeUpFrontLightEnabled && it.args[0] != 0) {
-////                        Log.i("setLightValueImpl enforcing 0 ")
-////                        it.args[0] = 0
-////                    }
-////                    if (disableWakeUpFrontLightEnabled) {
-////                        Log.i("ignoring setLightValue")
-////                        it.result = 0
-////                    }
-//                }
-
 
             findMethod(
                 findClass(
@@ -758,6 +680,8 @@ class ModuleMain : IXposedHookLoadPackage {
                             getObjectField(mPhoneWindowManager, "mHandler") as Handler?
                         mPowerManager =
                             appContext.getSystemService(Context.POWER_SERVICE) as PowerManager
+
+                        Log.i("mPowerManager " + " " + mPowerManager)
 //                        mRefreshItent = PendingIntent.getBroadcast(
 //                            appContext,
 //                            0,
@@ -786,43 +710,7 @@ class ModuleMain : IXposedHookLoadPackage {
                         mAlarmService = appContext.getSystemService("alarm") as AlarmManager?
                         mVolumeWakeLock =
                             mPowerManager!!.newWakeLock(268435462, "Sys::VolumeWakeLock")
-//                        val intentFilter = IntentFilter()
-//                        intentFilter.addAction("android.intent.action.HEADSET_PLUG")
-//                        intentFilter.addAction("android.bluetooth.headset.action.STATE_CHANGED")
-//                        intentFilter.addAction("android.bluetooth.headset.profile.action.CONNECTION_STATE_CHANGED")
-//                        appContext.registerReceiver(intentFilter) { intent ->
-//
-//                            val state = intent?.getIntExtra("state", 0)
-//                                ?: intent?.getIntExtra("android.bluetooth.profile.extra.STATE", 0)
-//                                ?: intent?.getIntExtra("android.bluetooth.headset.extra.STATE", 0);
-//                            Log.i("received headphones action " + intent?.action + " " + state)
-//                        }
-//                        appContext.registerReceiver(IntentFilter(AKYLAS_DISABLE_LIGHT_DONE)) { intent ->
-//                            Log.i("received AKYLAS_DISABLE_LIGHT_DONE " + SystemClock.uptimeMillis())
-//                            forceHideKeyguard()
-//                            callMethod(
-//                                mPhoneWindowManager,
-//                                "wakeUpFromPowerKey",
-//                                SystemClock.uptimeMillis()
-//                            )
-//                            forceHideKeyguard()
-//                            val intent = Intent("AKYLAS_VOLUME_DOWN")
-//                            intent.putExtra("event", mLastDownKeyEvent)
-//                            if (mLastUpKeyEvent != null) {
-//                                intent.putExtra("eventUp", mLastUpKeyEvent)
-//                                mLastUpKeyEvent = null
-//                            }
-//                            mLastDownKeyEvent = null
-//                            appContext.sendBroadcast(intent)
-//                            mPhoneWindowManagerHandler?.removeMessages(595);
-//                            mPhoneWindowManagerHandler?.removeMessages(596);
-//                            val delay = if (mPagesTurned == 0) 1500L else 1500L
-//                            mPagesTurned += 1
-//                            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(595, delay);
-//                            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(596, delay + 50);
-////                            mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(600, 0L)
-////                callMethod(getObjectField(mPhoneWindowManager, "mHandler"), "sendEmptyMessageDelayed",600, 0L);
-//                        }
+
                     }
                     Log.i("interceptKeyBeforeQueueing " + lpparam.packageName + " " + mPowerManager?.isInteractive + " " + it.args[0])
 //                    if (!mPowerManager!!.isInteractive) {
@@ -856,7 +744,7 @@ class ModuleMain : IXposedHookLoadPackage {
                     if (what == 595) {
                         Log.i("handleMessage 595, going back to sleep")
                         mPagesTurned = 0
-                        callMethod(mPowerManager, "goToSleep", SystemClock.uptimeMillis())
+                        callMethod(mPowerManager, "goToSleep", SystemClock.uptimeMillis(), 6, 0)
                         forceHideKeyguard()
                         if (mVolumeWakeLock?.isHeld == true) {
                             mVolumeWakeLock?.release()
@@ -865,8 +753,6 @@ class ModuleMain : IXposedHookLoadPackage {
                     } else if (what == 596) {
                         Log.i("handleMessage 596 cleaning up")
                         disableWakeUpFrontLightEnabled = false
-//                        enableScreenUpdate()
-//                        turnOnLight(false)
                         it.result = true
                     } else if (what == 600) {
                         Log.i("handleMessage 600")
@@ -874,6 +760,7 @@ class ModuleMain : IXposedHookLoadPackage {
                         it.result = true
                     } else if (what == 601) {
                         Log.i("handleMessage 601")
+//                        enableKeyguard()
                         sendPastKeyUpEvent()
                         it.result = true
                     }

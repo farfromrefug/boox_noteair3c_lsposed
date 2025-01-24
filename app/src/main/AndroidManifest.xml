@@ -4,10 +4,14 @@
 
     <application
         android:label="NoteAir3cLSPosed"
-        tools:ignore="MissingApplicationIcon"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposedsharedprefs"
             android:value="true" />
         <meta-data
             android:name="xposeddescription"

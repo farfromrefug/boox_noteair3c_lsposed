@@ -24,10 +24,14 @@
     </style>
     <style name="ThemeOverlay.App.Preference" parent="PreferenceThemeOverlay">
         <item name="switchPreferenceCompatStyle">@style/App.Preference.SwitchPreference</item>
+<!--        <item name="seekBarPreferenceStyle">@style/App.Preference.SeekbarPreference</item>-->
     </style>
 
     <style name="App.Preference.SwitchPreference" parent="Preference.SwitchPreference.Material">
         <item name="android:widgetLayout">@layout/my_material_switch_layout</item>
     </style>
+<!--    <style name="App.Preference.SeekbarPreference" parent="Preference.SeekBarPreference.Material">-->
+<!--        <item name="android:layout">@layout/my_material_seekbar_layout</item>-->
+<!--    </style>-->
 
 </resources>
