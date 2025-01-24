@@ -25,7 +25,7 @@
             android:title="Kreader key up delay" />
         <SeekBarPreference
             app:showSeekBarValue="true"
-            android:defaultValue="1200"
+            android:defaultValue="1700"
             app:adjustable="true"
             app:iconSpaceReserved="false"
             app:min="200"
@@ -61,7 +61,7 @@
             app:showSeekBarValue="true"
             app:min="200"
             android:max="3000"
-            android:defaultValue="600"
+            android:defaultValue="700"
             app:adjustable="true"
             app:iconSpaceReserved="false"
             android:key="sleep_delay"
