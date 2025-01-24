@@ -1,47 +1,72 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <SeekBarPreference
-        app:showSeekBarValue="true"
-        android:defaultValue="1200"
-        app:adjustable="true"
-        app:min="200"
-        android:max="5000"
-        android:key="kreader_sleep_delay"
-        android:summary="delay between volume key down and screen sleep when using Kreader"
-        android:title="Kreader screen sleep delay" />
-    <SeekBarPreference
-        app:showSeekBarValue="true"
-        app:min="200"
-        android:max="5000"
-        android:defaultValue="600"
-        app:adjustable="true"
-        android:key="sleep_delay"
-        android:summary="delay between volume key down and screen sleep"
-        android:title="screen sleep delay" />
-    <SeekBarPreference
-        app:showSeekBarValue="true"
-        app:min="0"
-        app:adjustable="true"
-        android:max="5000"
-        android:defaultValue="300"
-        android:key="kreader_volume_key_up_delay"
-        android:summary="delay between volume key down and volume key up when using Kreader"
-        android:title="Kreader key up delay" />
-    <SeekBarPreference
-        app:showSeekBarValue="true"
-        app:min="0"
-        app:adjustable="true"
-        android:max="5000"
-        android:defaultValue="300"
-        android:key="volume_key_up_delay"
-        android:summary="delay between volume key down and volume key up"
-        android:title="key up delay" />
-    <SeekBarPreference
-        app:showSeekBarValue="true"
-        app:min="200"
-        app:adjustable="true"
-        android:max="10000"
-        android:defaultValue="1000"
-        android:key="volume_key_cleanup_delay"
-        android:summary="delay between volume key up and cleanup"
-        android:title="cleanup delay" />
+    <PreferenceCategory
+        android:title="Kreader">
+        <SeekBarPreference
+            app:showSeekBarValue="true"
+            app:min="0"
+            app:adjustable="true"
+            android:max="2000"
+            android:defaultValue="200"
+            android:key="kreader_volume_key_down_delay"
+            android:summary="delay before sending keydown event after waking up when using Kreader"
+            android:title="Kreader key down delay" />
+        <SeekBarPreference
+            app:showSeekBarValue="true"
+            app:min="0"
+            app:adjustable="true"
+            android:max="2000"
+            android:defaultValue="300"
+            android:key="kreader_volume_key_up_delay"
+            android:summary="delay between volume key down and volume key up when using Kreader"
+            android:title="Kreader key up delay" />
+        <SeekBarPreference
+            app:showSeekBarValue="true"
+            android:defaultValue="1200"
+            app:adjustable="true"
+            app:min="200"
+            android:max="3000"
+            android:key="kreader_sleep_delay"
+            android:summary="delay between volume key down and screen sleep when using Kreader"
+            android:title="Kreader screen sleep delay" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Shared and Other apps">
+
+        <SeekBarPreference
+            app:showSeekBarValue="true"
+            app:min="0"
+            app:adjustable="true"
+            android:max="2000"
+            android:defaultValue="200"
+            android:key="volume_key_down_delay"
+            android:summary="delay before sending keydown event after waking up"
+            android:title="key down delay" />
+        <SeekBarPreference
+            app:showSeekBarValue="true"
+            app:min="0"
+            app:adjustable="true"
+            android:max="2000"
+            android:defaultValue="300"
+            android:key="volume_key_up_delay"
+            android:summary="delay between volume key down and volume key up"
+            android:title="key up delay" />
+        <SeekBarPreference
+            app:showSeekBarValue="true"
+            app:min="200"
+            android:max="3000"
+            android:defaultValue="600"
+            app:adjustable="true"
+            android:key="sleep_delay"
+            android:summary="delay between volume key down and screen sleep"
+            android:title="screen sleep delay" />
+        <SeekBarPreference
+            app:showSeekBarValue="true"
+            app:min="200"
+            app:adjustable="true"
+            android:max="3000"
+            android:defaultValue="1000"
+            android:key="volume_key_cleanup_delay"
+            android:summary="delay between volume key up and cleanup"
+            android:title="cleanup delay" />
+    </PreferenceCategory>
 </PreferenceScreen>

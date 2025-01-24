@@ -235,8 +235,11 @@ class ModuleMain : IXposedHookLoadPackage {
 //                sendPastKeyDownEvent()
 //                sendPastKeyUpEvent()
                 wakeLock.acquire(2300L);
+                val prefs = Preferences()
+                val key_down_delay = prefs.getInt(if (usingKreader) "kreader_volume_key_down_delay" else "volume_key_down_delay", 200)
+                Log.i("sendEmptyMessageDelayed 600 with delay $key_down_delay")
                 mLastDownKeyEvent = KeyEvent(paramKeyEvent);
-                mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(600, 200L)
+                mPhoneWindowManagerHandler?.sendEmptyMessageDelayed(600, key_down_delay.toLong())
                 return true;
             }
         }

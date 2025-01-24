@@ -1,7 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppThemeOverlay" parent="Theme.Material3.Light">
+    <style name="AppThemeBase" parent="Theme.Material3.Light.NoActionBar">
+    </style>
+    <style name="AppThemeOverlay" parent="AppThemeBase">
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar">
     </style>
@@ -10,8 +12,8 @@
         <item name="titleTextAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
     </style>
     <style name="AppTheme" parent="AppThemeOverlay">
-<!--        <item name="appBarLayoutStyle">@style/AppTheme.AppBarOverlay</item>-->
-<!--        <item name="toolbarStyle">@style/AppTheme.Toolbar</item>-->
+        <item name="appBarLayoutStyle">@style/Widget.App.AppBarLayout</item>
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
         <item name="preferenceTheme">@style/ThemeOverlay.App.Preference</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
@@ -33,5 +35,16 @@
 <!--    <style name="App.Preference.SeekbarPreference" parent="Preference.SeekBarPreference.Material">-->
 <!--        <item name="android:layout">@layout/my_material_seekbar_layout</item>-->
 <!--    </style>-->
-
+    <style name="Widget.App.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+        <!--        <item name="titleTextColor">@android:color/white</item>-->
+        <!--        <item name="navigationIconTint">@android:color/white</item>-->
+    </style>
+    <style name="Widget.App.AppBarLayout" parent="Widget.Material3.AppBarLayout">
+        <!-- Change the background color of the AppBarLayout so the AppBarLayout is green.
+                The toolbar is transparent by default so you will see this color through the toolbar. -->
+    </style>
+    <style name="ThemeOverlay.App.Toolbar" parent="">
+        <!--        <item name="colorControlNormal">@android:color/white</item>-->
+    </style>
 </resources>
