@@ -324,14 +324,10 @@ class ModuleMain : IXposedHookLoadPackage {
 //        }
 //    }
 
-    var prefs: Preferences? = null
     @SuppressLint("NewApi")
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
 
-        prefs = Preferences()
-
-
-        Log.i("handleLoadPackage " + lpparam.packageName + " " + AndroidAppHelper.currentApplication() + " " + prefs?.getInt("sleep_delay", 1000) )
+        Log.i("handleLoadPackage " + lpparam.packageName + " " + AndroidAppHelper.currentApplication())
         ViewUpdateHelper = findClass(
             "android.onyx.ViewUpdateHelper",
             lpparam.classLoader
