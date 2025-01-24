@@ -118,8 +118,8 @@ lane :build_flavor do |params|
   # commit version changes
   if (ENV["GITHUB_ACTIONS"] == 'true')
     # sh("git add *.plist *.gradle; git commit -m 'chore: new build' --allow-empty")
-    git_add(path: ["./*.gradle"])
-    git_commit(path: ["./*.gradle"], message: "chore: new build", allow_nothing_to_commit: true)
+    git_add(path: ["./*.gradle.kts"])
+    git_commit(path: ["./*.gradle.kts"], message: "chore: new build", allow_nothing_to_commit: true)
   end
 
   build_output = build(flavor: flavor, options: options)
