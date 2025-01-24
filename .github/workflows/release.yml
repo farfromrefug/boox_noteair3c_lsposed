@@ -17,10 +17,10 @@ on:
         description: "Should we publish?"
         required: true
         type: boolean
-        default: false
+        default: true
       github:
         description: "Should we publish on Github?"
-        default: true
+        default: false
         required: true
         type: boolean
 
