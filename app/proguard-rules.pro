@@ -1,6 +1,7 @@
 # Xposed
 -adaptresourcefilecontents META-INF/xposed/java_init.list
 -keepattributes RuntimeVisibleAnnotations
+-keep class * implements de.robv.android.xposed.IXposedHookLoadPackage
 -keep,allowobfuscation,allowoptimization public class * extends io.github.libxposed.api.XposedModule {
     public <init>(...);
     public void onPackageLoaded(...);
