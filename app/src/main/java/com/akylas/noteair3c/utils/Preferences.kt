@@ -20,7 +20,6 @@ class Preferences {
          * To read preference of user.
          */
         private val prefs by lazy {
-            Log.i("init prefs")
             val pref = XSharedPreferences(BuildConfig.APPLICATION_ID)
             pref.makeWorldReadable()
             pref

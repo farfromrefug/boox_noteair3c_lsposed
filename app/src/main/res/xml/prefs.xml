@@ -1,7 +1,18 @@
 <PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="UnusedAttribute" >
+    <Preference
+        android:key="whitelistAppsFromDozeMode"
+        app:iconSpaceReserved="false"
+        android:summary="Apps on which to enable reader mode"
+        android:title="Reader apps">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.akylas.noteair3c.WhitelistAppsActivity"
+            android:targetPackage="com.akylas.noteair3c.lsposed" />
+    </Preference>
     <PreferenceCategory
+        app:iconSpaceReserved="false"
         android:title="Kreader">
         <SeekBarPreference
             app:showSeekBarValue="true"
@@ -29,7 +40,7 @@
             app:adjustable="true"
             app:iconSpaceReserved="false"
             app:min="200"
-            android:max="3000"
+            android:max="6000"
             android:key="kreader_sleep_delay"
             android:summary="delay between volume key down and screen sleep when using Kreader"
             android:title="Kreader screen sleep delay" />
@@ -60,7 +71,7 @@
         <SeekBarPreference
             app:showSeekBarValue="true"
             app:min="200"
-            android:max="3000"
+            android:max="6000"
             android:defaultValue="700"
             app:adjustable="true"
             app:iconSpaceReserved="false"
@@ -75,7 +86,7 @@
             android:max="3000"
             android:defaultValue="1000"
             android:key="volume_key_cleanup_delay"
-            android:summary="delay between volume key up and cleanup"
+            android:summary="delay between sleep and cleanup"
             android:title="cleanup delay" />
     </PreferenceCategory>
 </PreferenceScreen>

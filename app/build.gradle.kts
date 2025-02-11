@@ -22,6 +22,7 @@ android {
 
     buildTypes {
         release {
+            multiDexEnabled = false
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles("proguard-rules.pro")
@@ -68,6 +69,13 @@ android {
                 println("OutputFileName: $outputFileName")
                 output.outputFileName = outputFileName
             }
+    }
+
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
     }
 }
 
