@@ -59,6 +59,8 @@ class ModuleMain : IXposedHookLoadPackage {
         var mVolumeWakeLock: android.os.PowerManager.WakeLock? = null;
         var mLastUpKeyEvent: android.view.KeyEvent? = null;
         var mLastDownKeyEvent: android.view.KeyEvent? = null;
+        var sendingDownEvent = 0;
+        var sendingUpEvent = 0;
         var mAlarmService: AlarmManager? = null
         var mPhoneWindowHelper: Any? = null
         var PhoneWindowManager: Class<Any>? = null
@@ -115,12 +117,12 @@ class ModuleMain : IXposedHookLoadPackage {
             val newKeyEvent = KeyEvent(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(),
                 mLastDownKeyEvent!!.action, mLastDownKeyEvent!!.keyCode,  mLastDownKeyEvent!!.repeatCount, mLastDownKeyEvent!!.metaState)
             Log.i("sendPastKeyDownEvent " + mLastDownKeyEvent + " " + usingKreader + " " + newKeyEvent + " :${mVolumeWakeLock?.isHeld}")
+            sendingDownEvent = 2
             XposedHelpers.callMethod(mInputManager, "injectInputEvent", newKeyEvent, 0)
             mLastDownKeyEvent = null;
-
-            if (mVolumeWakeLock?.isHeld == true) {
-                mVolumeWakeLock?.release()
-            }
+//            if (mVolumeWakeLock?.isHeld == true) {
+//                mVolumeWakeLock?.release()
+//            }
             val prefs = Preferences()
             val delay = if (usingKreader) prefs.getInt("kreader_sleep_delay", 1299) else prefs.getInt("sleep_delay", 649)
             val cleanup_delay = prefs.getInt("volume_key_cleanup_delay", 1000)
@@ -137,6 +139,7 @@ class ModuleMain : IXposedHookLoadPackage {
             val newKeyEvent = KeyEvent(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(),
                 mLastUpKeyEvent!!.action, mLastUpKeyEvent!!.keyCode,  mLastUpKeyEvent!!.repeatCount, mLastUpKeyEvent!!.metaState)
             Log.i("sendPastKeyUpEvent "  + mLastUpKeyEvent + " " + newKeyEvent)
+            sendingUpEvent = 2
             XposedHelpers.callMethod(mInputManager, "injectInputEvent",newKeyEvent, 0)
             mLastUpKeyEvent = null
         }
@@ -158,7 +161,7 @@ class ModuleMain : IXposedHookLoadPackage {
     }
     fun cleanupAfterSleep(){
         disableWakeUpFrontLightEnabled = false
-        Log.i("setLightEntryStateBeforeStandby warmLightOnBeforeStandby:$warmLightOnBeforeStandby brightnessLightOnBeforeStandby:$brightnessLightOnBeforeStandby ")
+        Log.i("cleanupAfterSleep warmLightOnBeforeStandby:$warmLightOnBeforeStandby brightnessLightOnBeforeStandby:$brightnessLightOnBeforeStandby ")
         setLightEntryStateBeforeStandby(6, warmLightOnBeforeStandby)
         setLightEntryStateBeforeStandby(7, brightnessLightOnBeforeStandby)
     }
@@ -182,35 +185,53 @@ class ModuleMain : IXposedHookLoadPackage {
 
     fun handleVolumeKeyEventDown(paramKeyEvent: KeyEvent): Boolean {
 //        Log.i("handleVolumeKeyEventDown " + paramKeyEvent.keyCode + " " + paramKeyEvent.action + " " + mPowerManager!!.isInteractive)
-        if (!mPowerManager!!.isInteractive && !goingToSleep && screenOff) {
-            val wakeLock = mVolumeWakeLock!!
+        val wakeLock = mVolumeWakeLock!!
+        Log.i("handleVolumeKeyEventDown keycode:${paramKeyEvent.keyCode} action:${paramKeyEvent.action} isInteractive:${mPowerManager!!.isInteractive} wakeLockHeld:${wakeLock.isHeld} sendingDownEvent:${sendingDownEvent}")
+        if (!mPowerManager!!.isInteractive && !goingToSleep && screenOff && sendingDownEvent == 0) {
             if (!wakeLock.isHeld) {;
                 wakeUpDevice()
                 mLastDownKeyEvent = KeyEvent(paramKeyEvent);
-                Log.i("handleVolumeKeyEventDown "  + paramKeyEvent + " " + mLastDownKeyEvent + " mVolumeWakeLock:WakeLock:$mVolumeWakeLock:WakeLock")
+//                Log.i("handleVolumeKeyEventDown "  + paramKeyEvent + " " + mLastDownKeyEvent + " mVolumeWakeLock:WakeLock:$mVolumeWakeLock:WakeLock")
                 val prefs = Preferences()
-                val key_down_delay = prefs.getInt(if (usingKreader) "kreader_volume_key_down_delay" else "volume_key_down_delay", 200)
-                val delay = if (usingKreader) prefs.getInt("kreader_sleep_delay", 1299) else prefs.getInt("sleep_delay", 649)
+                val key_down_delay = prefs.getInt(
+                    if (usingKreader) "kreader_volume_key_down_delay" else "volume_key_down_delay",
+                    200
+                )
+                val delay = if (usingKreader) prefs.getInt(
+                    "kreader_sleep_delay",
+                    1299
+                ) else prefs.getInt("sleep_delay", 649)
                 val cleanup_delay = prefs.getInt("volume_key_cleanup_delay", 1000)
                 val wakeLockTimeout = delay + cleanup_delay + key_down_delay + 3000L
                 wakeLock.acquire(wakeLockTimeout);
             }
             return true;
+        } else if (sendingDownEvent > 0) {
+                Log.i("letting down event go through to app")
+                // we let the down event go through
+                sendingDownEvent-=1
+                return false
+
+        } else if (wakeLock.isHeld == true) {
+            // we ignore other possible events
+            return true
         }
         return false;
     }
     fun handleVolumeKeyEventUp(paramKeyEvent: KeyEvent): Boolean {
         val wakeLock = mVolumeWakeLock!!;
-        Log.i("handleVolumeKeyEventUp keycode:${paramKeyEvent.keyCode} eventTime:${paramKeyEvent.eventTime} action:${paramKeyEvent.action} isInteractive:${mPowerManager!!.isInteractive} wakeLockHeld:${wakeLock.isHeld} mLastUpKeyEvent:${mLastUpKeyEvent}")
+        Log.i("handleVolumeKeyEventUp keycode:${paramKeyEvent.keyCode} action:${paramKeyEvent.action} isInteractive:${mPowerManager!!.isInteractive} wakeLockHeld:${wakeLock.isHeld} sendingUpEvent:${sendingUpEvent}")
         if (wakeLock.isHeld) {
-            Log.i("handleVolumeKeyEventUp " + paramKeyEvent)
             if (mLastUpKeyEvent == null) {
                 mLastUpKeyEvent = KeyEvent(paramKeyEvent);
+                return true
+            }
+            else if (sendingUpEvent > 0) {
+                sendingUpEvent-=1
+                Log.i("letting up event go through to app")
+                return false;
             }
             return true
-        }
-        if (mLastUpKeyEvent != null && mLastUpKeyEvent!!.eventTime == paramKeyEvent.eventTime) {
-            return true;
         }
         return false;
     }
@@ -232,7 +253,7 @@ class ModuleMain : IXposedHookLoadPackage {
     fun handleWakeUpOnVolume(paramKeyEvent: KeyEvent): Boolean {
         if (readerMode) {
             var keyCode = paramKeyEvent.keyCode;
-            Log.i("handleWakeUpOnVolume keyCode:${keyCode}")
+//            Log.i("handleWakeUpOnVolume keyCode:${keyCode}")
             if (keyCode == 24 || keyCode == 25) {
                 if (paramKeyEvent.action == KeyEvent.ACTION_UP) {
                     return handleVolumeKeyEventUp(paramKeyEvent);
@@ -284,7 +305,7 @@ class ModuleMain : IXposedHookLoadPackage {
             ) { name == "onCreate" }
                 .hookBefore {
                     val currentActivity = it.thisObject as Activity
-                    Log.i("onCreate " + currentActivity)
+//                    Log.i("onCreate " + currentActivity)
                 }
 
             findMethod(
@@ -293,14 +314,14 @@ class ModuleMain : IXposedHookLoadPackage {
                 .hookBefore {
                     val currentActivity = it.thisObject as Activity
                     appContext.sendBroadcast(Intent("KREADER_RESUME"))
-                    Log.i("onResume " + currentActivity)
+//                    Log.i("onResume " + currentActivity)
                 }
             findMethod(
                 ReaderActivity
             ) { name == "onDestroy" }
                 .hookBefore {
                     val currentActivity = it.thisObject as Activity
-                    Log.i("onDestroy " + currentActivity)
+//                    Log.i("onDestroy " + currentActivity)
                 }
             findMethod(
                 ReaderActivity
@@ -308,7 +329,7 @@ class ModuleMain : IXposedHookLoadPackage {
                 .hookBefore {
                     val currentActivity = it.thisObject as Activity
                     appContext.sendBroadcast(Intent("KREADER_STOP"))
-                    Log.i("onStop " + currentActivity + SystemClock.uptimeMillis() + " ")
+//                    Log.i("onStop " + currentActivity + SystemClock.uptimeMillis() + " ")
                 }
         } else if (lpparam.packageName == "android") {
             val ignoredPackages = listOf<String>("com.onyx.floatingbutton", "com.onyx", "com.android.systemui")
@@ -322,13 +343,13 @@ class ModuleMain : IXposedHookLoadPackage {
                         val newAppName =callMethod(it.args[0],"getPackageName" ) as String?
                         if (!ignoredPackages.contains(newAppName)) {
                             currentAppName =newAppName
-                            Log.i("setPackageName $currentAppName")
+//                            Log.i("setPackageName $currentAppName")
                             val prefs = Preferences()
                             var reader_apps = prefs.getString("reader_apps", "").split(",").toList()
                                 .filter { it.length > 0 }
-                            Log.i("reader_apps $reader_apps")
+//                            Log.i("reader_apps $reader_apps")
                             readerMode = reader_apps.contains(currentAppName)
-                            Log.i("readerMode $readerMode")
+//                            Log.i("readerMode $readerMode")
                         }
 
 
@@ -460,15 +481,15 @@ class ModuleMain : IXposedHookLoadPackage {
 
                         it.result = true
                     } else if (what == 596) {
-                        Log.i("handleMessage 596 cleaning up")
+//                        Log.i("handleMessage 596 cleaning up")
                         cleanupAfterSleep()
                         it.result = true
                     } else if (what == 600) {
-                        Log.i("handleMessage 600")
+//                        Log.i("handleMessage 600")
                         sendPastKeyDownEvent()
                         it.result = true
                     } else if (what == 601) {
-                        Log.i("handleMessage 601")
+//                        Log.i("handleMessage 601")
                         sendPastKeyUpEvent()
                         it.result = true
                     }
